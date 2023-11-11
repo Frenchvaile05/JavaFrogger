@@ -14,11 +14,12 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 	{
 		private FroggerChar1 frog;
 		private FroggerChar2 log;
+		private FroggerChar3 car;
 	
 		//variables
 		private Container content;
-		private JLabel frogLabel, logLabel;
-		private ImageIcon frogImage, logImage;
+		private JLabel frogLabel, logLabel, carLabel;
+		private ImageIcon frogImage, logImage, carImage;
 	
 		//button
 		private JButton startButton, visibilityButton;
@@ -28,6 +29,7 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				//GUI Code Setup
 				frog = new FroggerChar1(100, 250, 250, 100, "Frog.png");
 				log = new FroggerChar2(0, 0, 200, 120, "log.png", true, false);
+				car = new FroggerChar3(600, 600, 200, 200, "car.png", true, false);
 		
 				//set up screen
 				setSize(FroggerProps.SCREEN_WIDTH, FroggerProps.SCREEN_HEIGHT);
@@ -64,6 +66,23 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				log.setlogLabel(logLabel);
 				log.setfrog(frog);
 				log.setfrogLabel(frogLabel);
+				
+				//Car setup
+				car.setX(600);
+				car.setY(600);
+				car.setHeight(200);
+				car.setWidth(300);
+				car.setImage("car.png");
+				car.setMoving(false);
+
+				carLabel = new JLabel();
+				carImage = new ImageIcon(getClass().getResource(car.getImage()));
+				carLabel.setIcon(carImage);
+				carLabel.setSize(car.getWidth(), car.getHeight());
+				carLabel.setLocation(car.getX(), car.getY());
+				car.setcarLabel(carLabel);
+				car.setfrog(frog);
+				car.setfrogLabel(frogLabel);
 			
 				//Disappear Button
 				visibilityButton = new JButton("Hide");
@@ -85,6 +104,7 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				add(visibilityButton);
 				add(frogLabel);
 				add(logLabel);
+				add(carLabel);
 		
 				content.addKeyListener(this);
 				content.setFocusable(true);
@@ -189,17 +209,19 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 		
 				else if (e.getSource() == startButton)
 					{
-						//if character2 is moving
-						if (log.getMoving())
+						//if log and car are moving
+						if (log.getMoving() & car.getMoving())
 							{
 								//if moving, stop, change text to start
 								log.stopThread();
+								car.stopThread();
 								startButton.setText("Start");
 							}
 						else
 							{
 								//else start thread, change text to stop
 								log.startThread();
+								car.startThread();
 								startButton.setText("Stop");
 							}
 					}

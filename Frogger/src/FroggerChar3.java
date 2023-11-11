@@ -1,3 +1,4 @@
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -59,18 +60,18 @@ public class FroggerChar3 extends FroggerSprite implements Runnable
 					{
 						//moving code
 						int x  = this.x;
-						x += FroggerProps.CHARACTER_STEP;
+						x -= FroggerProps.CHARACTER_STEP;
 					
 		
 						if (x >= FroggerProps.SCREEN_WIDTH)
 							{
-								x = -1 * this.width;
+								x = 1 * this.width;
 							}
 					
 						this.setX(x);
 						carLabel.setLocation(this.x, this.y);
 					
-						//detect collision between character1 n characrer2
+						//detect collision between frog and car
 						if (this.visible) this.detectCollision();
 						System.out.println("Thread stopped");
 					
@@ -98,7 +99,7 @@ public class FroggerChar3 extends FroggerSprite implements Runnable
 				if (!this.moving)
 					{	
 						this.moving = true;
-						System.out.println("Start Thread2. Moving: " + this.moving);
+						System.out.println("Start Thread3. Moving: " + this.moving);
 						t = new Thread(this, "Character 3 Thread");
 						t.start();
 					}
