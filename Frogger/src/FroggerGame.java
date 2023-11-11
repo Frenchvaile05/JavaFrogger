@@ -14,11 +14,11 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 	{
 		private FroggerChar1 frog;
 		private FroggerChar2 log[] = new FroggerChar2[4];
-		private FroggerChar3 car;
+		private FroggerChar3 car[] = new FroggerChar3[4];
 	
 		//variables
 		private Container content;
-		private JLabel frogLabel, logLabel0, logLabel1, logLabel2, logLabel3, carLabel;
+		private JLabel frogLabel, logLabel0, logLabel1, logLabel2, logLabel3, carLabel0, carLabel1, carLabel2, carLabel3;
 		private ImageIcon frogImage, logImage, carImage;
 	
 		//button
@@ -34,7 +34,10 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				log[2] = new FroggerChar2(100, 100, 200, 120, "log.png", true, false);
 				log[3] = new FroggerChar2(300, 100, 200, 120, "log.png", true, false);
 				
-				car = new FroggerChar3(600, 600, 200, 200, "car.png", true, false);
+				car[0] = new FroggerChar3(600, 600, 200, 200, "car.png", true, false);
+				car[1] = new FroggerChar3(750, 750, 200, 200, "car.png", true, false);
+				car[2] = new FroggerChar3(800, 800, 200, 200, "car.png", true, false);
+				car[3] = new FroggerChar3(200, 800, 200, 200, "car.png", true, false);
 		
 				//set up screen
 				setSize(FroggerProps.SCREEN_WIDTH, FroggerProps.SCREEN_HEIGHT);
@@ -123,22 +126,73 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				log[3].setfrog(frog);
 				log[3].setfrogLabel(frogLabel);
 				
-				//Car setup
-				car.setX(600);
-				car.setY(600);
-				car.setHeight(200);
-				car.setWidth(300);
-				car.setImage("car.png");
-				car.setMoving(false);
+				//Car0 setup
+				car[0].setX(600);
+				car[0].setY(600);
+				car[0].setHeight(200);
+				car[0].setWidth(300);
+				car[0].setImage("car.png");
+				car[0].setMoving(false);
 
-				carLabel = new JLabel();
-				carImage = new ImageIcon(getClass().getResource(car.getImage()));
-				carLabel.setIcon(carImage);
-				carLabel.setSize(car.getWidth(), car.getHeight());
-				carLabel.setLocation(car.getX(), car.getY());
-				car.setcarLabel(carLabel);
-				car.setfrog(frog);
-				car.setfrogLabel(frogLabel);
+				carLabel0 = new JLabel();
+				carImage = new ImageIcon(getClass().getResource(car[0].getImage()));
+				carLabel0.setIcon(carImage);
+				carLabel0.setSize(car[0].getWidth(), car[0].getHeight());
+				carLabel0.setLocation(car[0].getX(), car[0].getY());
+				car[0].setcarLabel(carLabel0);
+				car[0].setfrog(frog);
+				car[0].setfrogLabel(frogLabel);
+				
+				//Car1 setup
+				car[1].setX(750);
+				car[1].setY(750);
+				car[1].setHeight(200);
+				car[1].setWidth(300);
+				car[1].setImage("car.png");
+				car[1].setMoving(false);
+
+				carLabel1 = new JLabel();
+				carImage = new ImageIcon(getClass().getResource(car[1].getImage()));
+				carLabel1.setIcon(carImage);
+				carLabel1.setSize(car[1].getWidth(), car[1].getHeight());
+				carLabel1.setLocation(car[1].getX(), car[1].getY());
+				car[1].setcarLabel(carLabel1);
+				car[1].setfrog(frog);
+				car[1].setfrogLabel(frogLabel);
+				
+				//Car2 setup
+				car[2].setX(800);
+				car[2].setY(800);
+				car[2].setHeight(200);
+				car[2].setWidth(300);
+				car[2].setImage("car.png");
+				car[2].setMoving(false);
+
+				carLabel2 = new JLabel();
+				carImage = new ImageIcon(getClass().getResource(car[2].getImage()));
+				carLabel2.setIcon(carImage);
+				carLabel2.setSize(car[2].getWidth(), car[2].getHeight());
+				carLabel2.setLocation(car[2].getX(), car[2].getY());
+				car[2].setcarLabel(carLabel2);
+				car[2].setfrog(frog);
+				car[2].setfrogLabel(frogLabel);
+				
+				//Car3 setup
+				car[3].setX(200);
+				car[3].setY(800);
+				car[3].setHeight(200);
+				car[3].setWidth(300);
+				car[3].setImage("car.png");
+				car[3].setMoving(false);
+
+				carLabel3 = new JLabel();
+				carImage = new ImageIcon(getClass().getResource(car[3].getImage()));
+				carLabel3.setIcon(carImage);
+				carLabel3.setSize(car[3].getWidth(), car[3].getHeight());
+				carLabel3.setLocation(car[3].getX(), car[3].getY());
+				car[3].setcarLabel(carLabel3);
+				car[3].setfrog(frog);
+				car[3].setfrogLabel(frogLabel);
 			
 				//Disappear Button
 				visibilityButton = new JButton("Hide");
@@ -163,7 +217,10 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				add(logLabel1);
 				add(logLabel2);
 				add(logLabel3);
-				add(carLabel);
+				add(carLabel0);
+				add(carLabel1);
+				add(carLabel2);
+				add(carLabel3);
 		
 				content.addKeyListener(this);
 				content.setFocusable(true);
@@ -250,16 +307,24 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				if ( e.getSource() == visibilityButton )
 					{
 						//check visibility of log. if visible, hide, change text to show
-						if (log[0].getVisible())
+						if (log[0].getVisible() & car[0].getVisible())
 							{
 								log[0].setVisible(false);
 								log[1].setVisible(false);
 								log[2].setVisible(false);
 								log[3].setVisible(false);
-								logLabel1.setVisible(log[0].getVisible());
+								logLabel0.setVisible(log[0].getVisible());
 								logLabel1.setVisible(log[1].getVisible());
 								logLabel2.setVisible(log[2].getVisible());
 								logLabel3.setVisible(log[3].getVisible());
+								car[0].setVisible(false);
+								car[0].setVisible(false);
+								car[2].setVisible(false);
+								car[3].setVisible(false);
+								carLabel0.setVisible(car[0].getVisible());
+								carLabel1.setVisible(car[1].getVisible());
+								carLabel2.setVisible(car[2].getVisible());
+								carLabel3.setVisible(car[3].getVisible());
 								visibilityButton.setText("show");
 							}
 			
@@ -274,6 +339,15 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 								logLabel1.setVisible(log[1].getVisible());
 								logLabel2.setVisible(log[2].getVisible());
 								logLabel3.setVisible(log[3].getVisible());
+								
+								car[0].setVisible(true);
+								car[1].setVisible(true);
+								car[2].setVisible(true);
+								car[3].setVisible(true);
+								carLabel0.setVisible(car[0].getVisible());
+								carLabel1.setVisible(car[1].getVisible());
+								carLabel2.setVisible(car[2].getVisible());
+								carLabel3.setVisible(car[3].getVisible());
 								visibilityButton.setText("Hide");
 							}
 					}
@@ -281,14 +355,17 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				else if (e.getSource() == startButton)
 					{
 						//if log and car are moving
-						if (log[0].getMoving() & car.getMoving())
+						if (log[0].getMoving() & car[0].getMoving())
 							{
 								//if moving, stop, change text to start
 								log[0].stopThread();
 								log[1].stopThread();
 								log[2].stopThread();
 								log[3].stopThread();
-								car.stopThread();
+								car[0].stopThread();
+								car[1].stopThread();
+								car[2].stopThread();
+								car[3].stopThread();
 								startButton.setText("Start");
 							}
 						else
@@ -298,7 +375,10 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 								log[1].startThread();
 								log[2].startThread();
 								log[3].startThread();
-								car.startThread();
+								car[0].startThread();
+								car[1].startThread();
+								car[2].startThread();
+								car[3].startThread();
 								startButton.setText("Stop");
 							}
 					}
