@@ -62,10 +62,9 @@ public class FroggerChar3 extends FroggerSprite implements Runnable
 						int x  = this.x;
 						x -= FroggerProps.CHARACTER_STEP;
 					
-		
-						if (x >= FroggerProps.SCREEN_WIDTH)
+						if (x + FroggerProps.SCREEN_WIDTH <= 0)
 							{
-								x = 1 * this.width;
+								x = 1 * FroggerProps.SCREEN_HEIGHT;
 							}
 					
 						this.setX(x);

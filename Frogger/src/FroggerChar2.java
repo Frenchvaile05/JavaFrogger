@@ -62,7 +62,6 @@ public class FroggerChar2 extends FroggerSprite implements Runnable
 						int x  = this.x;
 						x += FroggerProps.CHARACTER_STEP;
 					
-		
 						if (x >= FroggerProps.SCREEN_WIDTH)
 							{
 								x = -1 * this.width;
@@ -71,7 +70,7 @@ public class FroggerChar2 extends FroggerSprite implements Runnable
 						this.setX(x);
 						logLabel.setLocation(this.x, this.y);
 					
-						//detect collision between character1 n characrer2
+						//detect collision between frog and log
 						if (this.visible) this.detectCollision();
 						System.out.println("Thread stopped");
 					
