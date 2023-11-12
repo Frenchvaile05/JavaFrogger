@@ -303,7 +303,6 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 								System.out.println("Table Successfully Created");
 								
 								//sql = "INSERT INTO SCORE (SCORE) VALUES (?);";
-								//stmt.setInt(1,  score);
 								
 								//SELECTS
 								sql = "SELECT * FROM FROGGERSCORE";
@@ -332,13 +331,13 @@ public class FroggerGame extends JFrame implements KeyListener, ActionListener
 				int x = frog.getX();
 				int y = frog.getY();
 				
-				if (e.getKeyCode() == KeyEvent.VK_SPACE)
+				if (/* reach safe space &&*/ e.getKeyCode() == KeyEvent.VK_SPACE)
 				{
 					FroggerGame myGame = new FroggerGame();
 					score += 50;
 					scoreLabel.setText("Score: " + score);
 				}
-			//else if (r.intersects(frog.getRectangle()))
+			//else if (frog collids with car || collids with water)
 				//{
 					//FroggerGame myGame = new FroggerGame();
 					//score -= 50;
